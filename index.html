@@ -168,10 +168,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2023-03-09 15:17:10 / Modified: 17:31:39" itemprop="dateCreated datePublished" datetime="2023-03-09T15:17:10+08:00">2023-03-09</time>
+              <time title="Created: 2023-03-09 15:17:10" itemprop="dateCreated datePublished" datetime="2023-03-09T15:17:10+08:00">2023-03-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2023-03-10 10:56:57" itemprop="dateModified" datetime="2023-03-10T10:56:57+08:00">2023-03-10</time>
+              </span>
 
           
 
@@ -214,9 +220,9 @@
 <p><a target="_blank" rel="noopener" href="https://git-scm.com/">Git下载</a></p>
 <p>安装好 Node.js 后就可以使用 npm 来做 Hexo 的安装</p>
 <blockquote>
-<p>npm install -g hexo </p>
+<p>npm install -g hexo</p>
 </blockquote>
-<p>安装好后，在想要的根目录下运行以下命令进行初始化</p>
+<p>安装好后，在想要的根目录下运行以下命令进行初始化，我这里的根目录是 <code>./Blog</code></p>
 <blockquote>
 <p>hexo init</p>
 </blockquote>
@@ -284,6 +290,18 @@
 <p>在想要隐藏的文章中，添加 <code>hidden</code> 属性</p>
 <figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: &#x27;Hidden Post&#x27;</span><br><span class="line">date: &#x27;2021/03/05 21:45:14&#x27;</span><br><span class="line"><span class="section">hidden: true</span></span><br><span class="line"><span class="section">---</span></span><br></pre></td></tr></table></figure>
 
+<h2 id="换台电脑继续建站"><a href="#换台电脑继续建站" class="headerlink" title="换台电脑继续建站"></a>换台电脑继续建站</h2><p>在公司使用电脑A搭好以后，回家想用电脑B继续写文章，结果发现 <code>hexo d</code> 传到 Git 上的是已经解析好的静态网页文件，也就是只有 public 文件夹中的东西，其他属于 hexo 框架的部分都没有上传</p>
+<p>所以需要把框架内容也同步到 Git 上，换电脑之后 pull 到本地继续编辑</p>
+<ol>
+<li>在 Git 上另外建一个分支 hexo，与静态文件所在的分支分开，并将 hexo 分支设为 <code>default</code></li>
+<li>在本地原本根目录 <code>./Blog</code> 之外的地方，重新 <code>git clone</code> 这个 hexo 分支，例如 hexo 分支目录为 <code>./hexo</code></li>
+<li>清空 <code>./hexo</code> 中的内容，把 <code>./Blog</code> 目录中的内容复制到<code>./hexo</code> 中</li>
+<li>运行 <code>git add .</code> <code>git commit -m &quot;hexo框架&quot;</code> <code>git push</code>，将内容更新到 hexo 分支</li>
+</ol>
+<p>这样 Git 项目上，两个分支就分别为 hexo 框架内容 和 博客网页内容 了，以上的操作都发生在电脑A</p>
+<p>换新电脑B之后，先安装 Node.js 和 git</p>
+<p>然后 <code>git clone</code> hexo 分支，就可以直接进行博客编辑了，由于配置文件 _config.yml 中跟踪的分支是静态文件分支 main，所以使用 <code>hexo d</code> 提交时也会把内容提交到 main 分支</p>
+<p>每次在电脑B或电脑A编辑之后，除了使用 <code>hexo d</code> 提交网页内容外，还要记得使用 <code>git push</code> 提交更新后的框架内容</p>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a target="_blank" rel="noopener" href="https://pdpeng.github.io/2022/01/19/setup-personal-blog/">快速搭建个人博客 —— 保姆级教程</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/144722437">Hexo建站手册（详细教程）</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/24422335">有哪些好看的 Hexo 主题</a></p>
